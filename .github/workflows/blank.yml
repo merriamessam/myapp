@@ -16,25 +16,28 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   sonar:
-    # The type of runner that the job will run on
     runs-on: ubuntu-latest
-    steps:
-    - name: Set up JDK 17  # Ensure the correct version of Java is used
-      uses: actions/setup-java@v3
-      with:
-        java-version: '17'
-        distribution: 'adopt'
     
-    - name: Run SonarQube Scan
-      uses: sonarsource/sonarcloud-github-action@v1
-      env:
-        SONAR_TOKEN: "09ec13ce88ad34926297c3e563af95bcc9a7f05609ec13ce88ad34926297c3e563af95bcc9a7f056"
-      with:
-        args: >
-          -Dsonar.projectKey=merriamessam_myapp
-          -Dsonar.organization=merriamessam
-          -Dsonar.python.version=3.9
-          -Dsonar.login="09ec13ce88ad34926297c3e563af95bcc9a7f05609ec13ce88ad34926297c3e563af95bcc9a7f056"
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Set up JDK 17  # Ensure the correct version of Java is used
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'adopt'
+
+      - name: Run SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@v1
+        env:
+          SONAR_TOKEN: "09ec13ce88ad34926297c3e563af95bcc9a7f05609ec13ce88ad34926297c3e563af95bcc9a7f056"
+        with:
+          args: >
+            -Dsonar.projectKey=merriamessam_myapp
+            -Dsonar.organization=merriamessam
+            -Dsonar.python.version=3.9
+            -Dsonar.login="09ec13ce88ad34926297c3e563af95bcc9a7f05609ec13ce88ad34926297c3e563af95bcc9a7f056"
 
   # This workflow contains a single job called "build"
   build:
