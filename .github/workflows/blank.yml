@@ -22,12 +22,14 @@ jobs:
     - name: Run SonarQube Scan
       uses: sonarsource/sonarcloud-github-action@v1
       env:
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        SONAR_TOKEN: "09ec13ce88ad34926297c3e563af95bcc9a7f05609ec13ce88ad34926297c3e563af95bcc9a7f056"
+        # SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       with:
         args: >
           -Dsonar.projectKey=merriamessam_myapp
           -Dsonar.organization=merriamessam
-          -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+          -Dsonar.login="09ec13ce88ad34926297c3e563af95bcc9a7f05609ec13ce88ad34926297c3e563af95bcc9a7f056"
+          # -Dsonar.login=${{ secrets.SONAR_TOKEN }}
 
   # This workflow contains a single job called "build"
   build:
