@@ -26,7 +26,7 @@ jobs:
       with:
         args: >
           -Dsonar.projectKey=merriamessam_myapp
-          # -Dsonar.host.url=https://your-sonarqube-server
+          -Dsonar.organization=merriamessam
           -Dsonar.login=${{ secrets.SONAR_TOKEN }}
 
   # This workflow contains a single job called "build"
