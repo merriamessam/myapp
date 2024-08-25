@@ -67,9 +67,9 @@ jobs:
 
     - name: Deploy to Minikube
       run: |
-        kubectl apply -f k8s-manifests/
-        kubectl set image deployment/your-deployment your-container=$DOCKER_REPO:$IMAGE_TAG
-        kubectl rollout status deployment/your-deployment
+        kubectl apply -f deployment.yaml
+        kubectl set image deployment/myapp myapp=$DOCKER_REPO:$IMAGE_TAG
+        kubectl rollout status deployment/myapp
 
     - name: Run tests
       run: |
