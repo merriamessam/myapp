@@ -34,9 +34,6 @@ jobs:
           # Add the SonarScanner bin directory to the PATH
           echo "PATH=\$SONAR_SCANNER_HOME/bin:\$PATH" >> $GITHUB_ENV
 
-      - name: Verify SonarScanner installation
-        run: sonar-scanner --version
-
       - name: Run SonarCloud Scan
         run: |
           sonar-scanner \
