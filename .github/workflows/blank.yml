@@ -2,18 +2,13 @@
 
 name: CI
 
-# Controls when the workflow will run
 on:
-# Triggers the workflow on push or pull request events but only for the "main" branch
   push:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
-
- # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   sonar:
     runs-on: ubuntu-latest
@@ -27,8 +22,31 @@ jobs:
         with:
           java-version: '17'
           distribution: 'adopt'
+
+      - name: Install SonarScanner
+        run: |
+          # Download the SonarScanner CLI
+          wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.8.0.2856-linux.zip
+          # Unzip the downloaded file
+          unzip sonar-scanner-cli-4.8.0.2856-linux.zip
+          # Set the SONAR_SCANNER_HOME environment variable to the directory where SonarScanner is installed
+          echo "SONAR_SCANNER_HOME=$(pwd)/sonar-scanner-4.8.0.2856-linux" >> $GITHUB_ENV
+          # Add the SonarScanner bin directory to the PATH
+          echo "PATH=\$SONAR_SCANNER_HOME/bin:\$PATH" >> $GITHUB_ENV
+
+      - name: Verify SonarScanner installation
+        run: sonar-scanner --version
+
+      - name: Run SonarCloud Scan
+        run: |
+          sonar-scanner \
+            -Dsonar.projectKey=merriamessam_myapp \
+            -Dsonar.organization=merriamessam \
+            -Dsonar.python.version=3.9 \
+            -Dsonar.login="${{ secrets.SONAR_TOKEN }}"
         env:
           JAVA_HOME: /opt/hostedtoolcache/Java_Adopt_jdk/17.0.12-7/x64
+
           JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Adopt_jdk/17.0.12-7/x64
 
       - name: Install SonarScanner
