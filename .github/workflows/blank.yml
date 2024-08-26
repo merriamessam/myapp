@@ -25,10 +25,6 @@ jobs:
           wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.8.0.2856-linux.zip
           unzip sonar-scanner-cli-4.8.0.2856-linux.zip
           echo "export PATH=\"$PATH:$(pwd)/sonar-scanner-4.8.0.2856-linux/bin\"" >> $GITHUB_ENV
-      - name: Verify SonarScanner Installation
-        run: |
-          echo $PATH
-          sonar-scanner --version
       - name: SonarCloud Scan
         run: |
           export JAVA_HOME=/opt/hostedtoolcache/Java_Adopt_jdk/17.0.12-7/x64
