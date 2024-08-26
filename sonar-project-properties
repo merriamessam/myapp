@@ -1,0 +1,3 @@
+sonar.projectKey=merriamessam_myapp
+sonar.organization=merriamessam
+sonar.sources=.
