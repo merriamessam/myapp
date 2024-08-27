@@ -1,3 +1,4 @@
 sonar.projectKey=merriamessam_myapp
 sonar.organization=merriamessam
 sonar.sources=.
+sonar.python.version=3.9
