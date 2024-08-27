@@ -14,29 +14,8 @@ This guide will walk you through the process of:
 - **Minikube** or **OpenShift** installed and configured.
 - **GitHub** account for version control and CI/CD.
 - **SonarQube** instance (open-source) for code quality checks.
-- A sample application for hands-on exercises (e.g., a simple Python Flask app or Node.js app).
+- A sample application for hands-on exercises (a simple Python Flask app ).
 
 ## 1. Containerization with Red Hat Podman
 
-### 1.1 Write a Dockerfile
-Create a `Dockerfile` in the root directory of your sample application. Below is an example for a Python Flask application:
-
-```Dockerfile
-# Use the official Python image
-FROM python:3.9-slim
-
-# Set the working directory
-WORKDIR /app
-
-# Copy the current directory contents into the container
-COPY . .
-
-# Install any needed packages specified in requirements.txt
-RUN pip install --no-cache-dir -r requirements.txt
-
-# Make port 5000 available to the world outside this container
-EXPOSE 5000
-
-# Define the command to run the application
-CMD ["python", "app.py"]
-
+<img width="655" alt="image" src="https://github.com/user-attachments/assets/dd547081-d2a6-40e0-a1b1-7017a3fd963e">
