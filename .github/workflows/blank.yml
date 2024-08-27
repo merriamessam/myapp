@@ -15,38 +15,30 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  sonar:
+  sonarcloud:
+    name: SonarCloud Analysis
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
-      - name: Set up JDK 17
-        uses: actions/setup-java@v3
         with:
-          java-version: '17'
-          distribution: 'adopt'
+          fetch-depth: 0  # Full history is necessary for accurate analysis
 
-      - name: Install SonarScanner
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install Dependencies
         run: |
-          sudo apt-get update
-          sudo apt-get install -y openjdk-17-jdk
-          wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.8.0.2856-linux.zip
-          unzip sonar-scanner-cli-4.8.0.2856-linux.zip
-          echo "SONAR_SCANNER_HOME=$(pwd)/sonar-scanner-4.8.0.2856-linux" >> $GITHUB_ENV
-          echo "PATH=$SONAR_SCANNER_HOME/bin:$PATH" >> $GITHUB_ENV
-          
-      - name: Print PATH for Debugging
-        run: echo $PATH
-        
-      - name: Run SonarCloud Scan
-        run: |
-          sonar-scanner \
-            -Dsonar.projectKey=merriamessam_myapp \
-            -Dsonar.organization=merriamessam \
-            -Dsonar.sources=. \
-            -Dsonar.python.version=3.9 \
-            -Dsonar.login="${{ secrets.SONAR_TOKEN }}"
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
