@@ -98,7 +98,11 @@ jobs:
     - name: Start Minikube
       run: |
         minikube start
-        minikube status      
+        minikube status
+        
+      # Debugging Step
+    - name: Print Minikube status
+      run: minikube status
     - name: Deploy to Minikube
       run: |
         kubectl apply -f deployment.yaml
