@@ -16,6 +16,11 @@ This guide will walk you through the process of:
 - **SonarQube** instance (open-source) for code quality checks.
 - A sample application for hands-on exercises (a simple Python Flask app ).
 
-## 1. Containerization with Red Hat Podman
+## 1. Workflow 
 
 <img width="655" alt="image" src="https://github.com/user-attachments/assets/dd547081-d2a6-40e0-a1b1-7017a3fd963e">
+
+## 2. Test  
+```bash
+kubectl get pods
+```
