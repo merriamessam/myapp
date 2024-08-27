@@ -1,6 +1,6 @@
 # myapp
 
-# Containerization and Deployment with Red Hat Podman, Kubernetes, GitHub, and SonarQube
+# Containerization and Deployment with Podman, Kubernetes, GitHub, and SonarQube
 
 ## Objectives
 This guide will walk you through the process of:
